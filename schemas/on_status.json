@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ONDC On Status Schema",
+  "type": "object",
+  "required": ["context", "message"],
+  "properties": {
+    "context": {
+      "type": "object",
+      "required": ["domain", "country", "city", "action", "core_version", "bap_id", "bap_uri", "bpp_id", "bpp_uri", "transaction_id", "message_id", "timestamp", "ttl"],
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["on_status"]
+        },
+        "core_version": {
+          "type": "string"
+        },
+        "bap_id": {
+          "type": "string"
+        },
+        "bap_uri": {
+          "type": "string"
+        },
+        "bpp_id": {
+          "type": "string"
+        },
+        "bpp_uri": {
+          "type": "string"
+        },
+        "transaction_id": {
+          "type": "string"
+        },
+        "message_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ttl": {
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "type": "object",
+      "required": ["order"],
+      "properties": {
+        "order": {
+          "type": "object",
+          "required": ["id", "state"],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "fulfillments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "object",
+                    "properties": {
+                      "descriptor": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "tracking": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ONDC Status API Schema",
+    "description": "Schema for /status request (BAP → BPP)",
+    "type": "object",
+    "properties": {
+      "context": {
+        "type": "object",
+        "properties": {
+          "domain": { "type": "string" },
+          "country": { "type": "string" },
+          "city": { "type": "string" },
+          "action": { "type": "string", "const": "status" },
+          "core_version": { "type": "string" },
+          "bap_id": { "type": "string" },
+          "bap_uri": { "type": "string" },
+          "transaction_id": { "type": "string" },
+          "message_id": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "domain",
+          "country",
+          "city",
+          "action",
+          "core_version",
+          "bap_id",
+          "bap_uri",
+          "transaction_id",
+          "message_id",
+          "timestamp"
+        ]
+      },
+      "message": {
+        "type": "object",
+        "properties": {
+          "order_id": { "type": "string" }
+        },
+        "required": ["order_id"]
+      }
+    },
+    "required": ["context", "message"]
+  }
+  
